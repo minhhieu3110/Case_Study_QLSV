@@ -20,4 +20,7 @@ class Class{
     findByName(name){
         return this.listStudents.filter( value => (value.name.toUpperCase().includes(name.toUpperCase())))
     }
+    sort(){
+        return this.listStudents.sort((a,b) => a.name.toUpperCase().localeCompare(b.name.toUpperCase()));
+    }
 }

@@ -20,7 +20,7 @@ function showListStudent() {
     let str = ``
     for (let i = 0; i < listStudent.length; i++) {
         str += `<tr>
-                    <td>${listStudent[i].id}</td>
+                    <td>${i+1}</td>
                     <td>${listStudent[i].name}</td>
                     <td>${listStudent[i].mathScore}</td>
                     <td>${listStudent[i].physicalScore}</td>
@@ -154,6 +154,11 @@ function searchByName() {
         alert("Không tìm thấy sinh viên có tên " + name)
     }
 
+}
+function sortAlphabet(){
+
+    listStudent = myClass.sort();
+    showListStudent()
 }
 function saveLocalStorage(){
     listStudent = myClass.listStudents
