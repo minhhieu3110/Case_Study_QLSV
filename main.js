@@ -34,7 +34,6 @@ function showListStudent() {
     document.getElementById('listStudents').innerHTML = str;
 }
 
-showListStudent()
 
 function formAdd() {
     document.getElementById('display').innerHTML = `
@@ -67,6 +66,7 @@ function addStudent() {
     let newStudent = new Student(id, name, math, physical, english, average, rank)
     myClass.add(newStudent)
     console.log(newStudent)
+    saveLocalStorage()
     showListStudent()
 }
 
@@ -100,6 +100,7 @@ function update(index) {
     }
     let updateStudent = new Student(id, name, updateMath, updatePhysical, updateEnglish, updateAverage, updateRank)
     myClass.update(index, updateStudent)
+    saveLocalStorage()
     showListStudent()
 }
 
@@ -107,6 +108,7 @@ function deleteStudent(index) {
     let ok = confirm("Bạn có chắc chắn xóa không ???")
     if (ok) {
         myClass.remove(index)
+        saveLocalStorage()
         showListStudent()
     } else {
         alert("THao tác xóa đã hủy")
@@ -153,7 +155,17 @@ function searchByName() {
     }
 
 }
-
-// window.onload = function() {
-//     myClass.restoreLocalStorage()
-// }
+function saveLocalStorage(){
+    listStudent = myClass.listStudents
+    localStorage.setItem("data", JSON.stringify(listStudent));
+}
+function restoreLocalStorage(){
+    if(localStorage.getItem('data')){
+        listStudent = JSON.parse(localStorage.getItem('data'));
+        showListStudent()
+    }
+}
+window.onload = function() {
+    restoreLocalStorage()
+}
+showListStudent()

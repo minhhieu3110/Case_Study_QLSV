@@ -3,15 +3,11 @@ class Class{
     listStudents;
     constructor(nameClass) {
         this.name = nameClass;
-        this.listStudents = []
-        // this.listStudents = localStorage
+        let storageData = localStorage.getItem('data');
+        this.listStudents = storageData ? JSON.parse(storageData) : [];
+
     }
-    // localStorage(){
-    //     localStorage.setItem("data", JSON.stringify(this.listStudents));
-    // }
-    // restoreLocalStorage(){
-    //     localStorage.getItem('data')
-    // }
+
     add(newStudent){
         this.listStudents.push(newStudent);
     }
