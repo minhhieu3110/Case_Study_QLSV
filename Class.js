@@ -17,10 +17,10 @@ class Class{
     remove(index){
         this.listStudents.splice(index, 1);
     }
-    findByName(name){
-        return this.listStudents.filter( value => (value.name.toUpperCase().includes(name.toUpperCase())))
+    findByName(lastname){
+        return this.listStudents.filter( value => (value.lastname.toUpperCase().includes(lastname.toUpperCase())))
     }
     sort(){
-        return this.listStudents.sort((a,b) => a.name.toUpperCase().localeCompare(b.name.toUpperCase()));
+        return this.listStudents.sort((a,b) => a.lastname.toUpperCase().localeCompare(b.lastname.toUpperCase()));
     }
 }

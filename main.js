@@ -7,6 +7,7 @@ function showListStudent() {
     <table border="1px">
         <tr>
             <th>STT</th>
+            <th>HỌ VÀ TÊN ĐỆM</th>
             <th>TÊN</th>
             <th>TOÁN</th>
             <th>VẬT LÝ</th>
@@ -21,7 +22,8 @@ function showListStudent() {
     for (let i = 0; i < listStudent.length; i++) {
         str += `<tr>
                     <td>${i+1}</td>
-                    <td>${listStudent[i].name}</td>
+                    <td>${listStudent[i].firstname}</td>
+                    <td>${listStudent[i].lastname}</td>
                     <td>${listStudent[i].mathScore}</td>
                     <td>${listStudent[i].physicalScore}</td>
                     <td>${listStudent[i].englishScore}</td>
@@ -38,7 +40,8 @@ function showListStudent() {
 function formAdd() {
     document.getElementById('display').innerHTML = `
     <input id="addId" placeholder="Nhập Id">
-    <input id="addName" placeholder="Nhập tên">
+    <input id="addFirstName" placeholder="Nhập họ">
+    <input id="addLastName" placeholder="Nhập tên">
     <input id="addMath" placeholder="Nhập điểm toán">
     <input id="addPhysical" placeholder="Nhập điểm vật lý">
     <input id="addEnglish" placeholder="Nhập điểm anh văn">
@@ -48,7 +51,8 @@ function formAdd() {
 
 function addStudent() {
     let id = document.getElementById('addId').value
-    let name = document.getElementById('addName').value
+    let firstname = document.getElementById("addFirstName").value
+    let lastname = document.getElementById('addLastName').value
     let math = parseFloat(document.getElementById('addMath').value);
     let physical = parseFloat(document.getElementById('addPhysical').value)
     let english = parseFloat(document.getElementById('addEnglish').value)
@@ -63,7 +67,7 @@ function addStudent() {
     } else if (average >= 8) {
         rank = "Giỏi"
     }
-    let newStudent = new Student(id, name, math, physical, english, average, rank)
+    let newStudent = new Student(id, firstname, lastname, math, physical, english, average, rank)
     myClass.add(newStudent)
     console.log(newStudent)
     saveLocalStorage()
@@ -73,7 +77,8 @@ function addStudent() {
 function edit(index) {
     document.getElementById('display').innerHTML = `
     <input id="editId" placeholder="Nhập Id" readonly value="${listStudent[index].id}">
-    <input id="editName" placeholder="Nhập tên" value="${listStudent[index].name}">
+    <input id="editFirstName" placeholder="Nhập tên" value="${listStudent[index].firstname}">
+    <input id="editLastName" placeholder="Nhập tên" value="${listStudent[index].lastname}">
     <input id="editMath" placeholder="Nhập điểm toán" value="${listStudent[index].mathScore}">
     <input id="editPhysical" placeholder="Nhập điểm vật lý" value="${listStudent[index].physicalScore}">
     <input id="editEnglish" placeholder="Nhập điểm anh văn" value="${listStudent[index].englishScore}">
@@ -83,7 +88,8 @@ function edit(index) {
 
 function update(index) {
     let id = document.getElementById('editId').value
-    let name = document.getElementById('editName').value
+    let updateFirstName = document.getElementById('editFirstName').value
+    let updateLastName = document.getElementById('editLastName').value
     let updateMath = parseFloat(document.getElementById('editMath').value);
     let updatePhysical = parseFloat(document.getElementById('editPhysical').value)
     let updateEnglish = parseFloat(document.getElementById('editEnglish').value)
@@ -98,7 +104,7 @@ function update(index) {
     } else if (updateAverage >= 8) {
         updateRank = "Giỏi"
     }
-    let updateStudent = new Student(id, name, updateMath, updatePhysical, updateEnglish, updateAverage, updateRank)
+    let updateStudent = new Student(id, updateFirstName, updateLastName, updateMath, updatePhysical, updateEnglish, updateAverage, updateRank)
     myClass.update(index, updateStudent)
     saveLocalStorage()
     showListStudent()
@@ -125,6 +131,7 @@ function searchByName() {
         <table border="1px">
             <tr>
                 <th>STT</th>
+                <th>HỌ VÀ TÊN ĐỆM</th>
                 <th>Tên</th>
                 <th>Toán</th>
                 <th>Vật Lý</th>
@@ -139,8 +146,9 @@ function searchByName() {
         for (let i = 0; i < foundName.length; i++) {
             str += `
             <tr>
-                <td>${foundName[i].id}</td>
-                <td>${foundName[i].name}</td>
+                <td>${i+1}</td>
+                <td>${foundName[i].firstname}</td>
+                <td>${foundName[i].lastname}</td>
                 <td>${foundName[i].mathScore}</td>
                 <td>${foundName[i].physicalScore}</td>
                 <td>${foundName[i].englishScore}</td>
@@ -158,6 +166,7 @@ function searchByName() {
 function sortAlphabet(){
 
     listStudent = myClass.sort();
+    saveLocalStorage()
     showListStudent()
 }
 function saveLocalStorage(){

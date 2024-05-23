@@ -1,14 +1,16 @@
 class Student{
     id;
-    name;
+    firstname
+    lastname;
     mathScore;
     physicalScore;
     englishScore;
     averageScore;
     rank;
-    constructor(inputId, inputName, inputMathScore, inputPhysicalScore, inputEnglishScore, inputAverage, inputRank) {
+    constructor(inputId, inputFirstName, inputLastName, inputMathScore, inputPhysicalScore, inputEnglishScore, inputAverage, inputRank) {
         this.id = inputId;
-        this.name = inputName;
+        this.firstname = inputFirstName
+        this.lastname = inputLastName;
         this.mathScore = inputMathScore;
         this.physicalScore = inputPhysicalScore;
         this.englishScore = inputEnglishScore;
