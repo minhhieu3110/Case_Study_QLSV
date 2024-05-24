@@ -166,6 +166,7 @@ function searchByName() {
 function sortAlphabet(){
 
     listStudent = myClass.sort();
+    console.log(listStudent)
     saveLocalStorage()
     showListStudent()
 }
